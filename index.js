@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://production-react-tau.vercel.app",
+  "https://production-react-delta.vercel.app",
 ];
 
 const { PORT = 8000 } = process.env;
