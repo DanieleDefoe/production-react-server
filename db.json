@@ -799,6 +799,17 @@
       "city": "Moscow",
       "username": "manager",
       "avatar": "https://avatars.mds.yandex.net/i?id=7f414f1042b4abe2ae68958ed8c11767_l-12714897-images-thumbs&n=13"
+    },
+    {
+      "id": "4",
+      "firstName": "Test",
+      "lastName": "Test",
+      "age": 23,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Moscow",
+      "username": "manager",
+      "avatar": "https://avatars.mds.yandex.net/i?id=7f414f1042b4abe2ae68958ed8c11767_l-12714897-images-thumbs&n=13"
     }
   ],
   "article-ratings": [
