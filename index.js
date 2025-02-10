@@ -1,15 +1,24 @@
-const fs = require("fs/promises");
+const fsSync = require("node:fs");
+const fs = require("node:fs/promises");
 const jsonServer = require("json-server");
-const path = require("path");
+const path = require("node:path");
 const cors = require("cors");
+const https = require("node:https");
+
+const options = {
+  key: fsSync.readFileSync(path.resolve(__dirname, "key.pem")),
+  cert: fsSync.readFileSync(path.resolve(__dirname, "cert.pem")),
+};
 
 const allowedOrigins = [
   "http://localhost:3000",
   "https://production-react-delta.vercel.app",
   "http://185.91.53.179",
+  "https://185.91.53.179",
+  "https://abuzar-production.ru",
 ];
 
-const { PORT = 8000 } = process.env;
+const { PORT = 443 } = process.env;
 
 const dbPath = path.resolve(__dirname, "db.json");
 
@@ -74,4 +83,6 @@ server.post("/login", async (req, res) => {
 
 server.use(router);
 
-server.listen(PORT);
+const httpsServer = https.createServer(options, server);
+
+httpsServer.listen(PORT);
