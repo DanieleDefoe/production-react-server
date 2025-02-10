@@ -18,7 +18,7 @@ const allowedOrigins = [
   "https://abuzar-production.ru",
 ];
 
-const { PORT = 443 } = process.env;
+const { PORT = 8443 } = process.env;
 
 const dbPath = path.resolve(__dirname, "db.json");
 
