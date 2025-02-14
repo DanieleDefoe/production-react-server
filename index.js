@@ -4,7 +4,6 @@ const jsonServer = require("json-server");
 const path = require("node:path");
 const cors = require("cors");
 const https = require("node:https");
-const http = require("node:http");
 
 const options = {
   key: fsSync.readFileSync(path.resolve(__dirname, "key.pem")),
@@ -19,7 +18,7 @@ const allowedOrigins = [
   "https://abuzar-production.ru",
 ];
 
-const { PORT = 8443, PORT2 = 8000 } = process.env;
+const { PORT = 8443 } = process.env;
 
 const dbPath = path.resolve(__dirname, "db.json");
 
@@ -85,7 +84,5 @@ server.post("/login", async (req, res) => {
 server.use(router);
 
 const httpsServer = https.createServer(options, server);
-const httpServer = http.createServer(server);
 
 httpsServer.listen(PORT);
-httpServer.listen(PORT2);
