@@ -81,6 +81,10 @@ server.post("/login", async (req, res) => {
   }
 });
 
+server.get("/test", (_, res) => {
+  res.send("CI / CD IS FUCKING WORKING AT LONG LONG LAST!");
+});
+
 server.use(router);
 
 const httpsServer = https.createServer(options, server);
