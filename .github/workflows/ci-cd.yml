@@ -14,35 +14,6 @@ jobs:
         node-version: [22.x]
 
     steps:
-      - name: Checkout commit
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-
-      - name: Start Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-
-      - name: Install deps
-        run: pnpm i
-
-      - name: Copy files to VPS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          source: "."
-          target: "/root/production-react-server"
-          rm: true
-          strip_components: 1
-
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.2.0
         with:
@@ -52,10 +23,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /root/production-react-server
-            # Ensure fnm is initialized so that Node and npm are in the PATH
-            export FNM_DIR="$HOME/.fnm"
-            [ -s "$FNM_DIR/fnm.sh" ] && source "$FNM_DIR/fnm.sh" || { echo "fnm is not installed"; exit 1; }
-            eval "$(fnm env)"
-
-            npm i -g pm2
-            pm2 restart index.js
+            git pull origin main
+            pnpm i
+            pm2 restart ecosystem.config.js
