@@ -23,6 +23,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /root/production-react-server
+            git config --global --add safe.directory /root/production-react-server
             git pull
             pnpm install
             pm2 restart index.js
