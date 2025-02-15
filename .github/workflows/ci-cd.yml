@@ -52,5 +52,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /root/production-react-server
+            # Ensure fnm is initialized so that Node and npm are in the PATH
+            export FNM_DIR="$HOME/.fnm"
+            [ -s "$FNM_DIR/fnm.sh" ] && source "$FNM_DIR/fnm.sh" || { echo "fnm is not installed"; exit 1; }
             eval "$(fnm env)"
-            bash -l -c "npm install -g pm2 && pm2 restart index.js"
+
+            npm i -g pm2
+            pm2 restart index.js
