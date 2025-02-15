@@ -84,7 +84,7 @@ server.post("/login", async (req, res) => {
 server.get("/test", (_, res) => {
   return res
     .status(200)
-    .send("CI / CD IS FUCKING WORKING AT LAST! IT IS FIXED");
+    .send("CI / CD IS FUCKING WORKING AT LAST! IT IS FIXED AGAIN NOW!!!!");
 });
 
 server.use(router);
