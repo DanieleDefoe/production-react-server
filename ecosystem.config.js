@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "production-react-server",
+      name: "index.js",
       script: "pnpm",
       args: "start",
     },
