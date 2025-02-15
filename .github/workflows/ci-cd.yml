@@ -52,4 +52,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /root/production-react-server
-            bash -l -c "pm2 restart index.js"
+            whereis pm2
+            # bash -l -c "pm2 restart index.js"
