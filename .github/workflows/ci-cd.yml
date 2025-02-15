@@ -52,4 +52,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /root/production-react-server
+            eval "$(fnm env)"
             bash -l -c "npm install -g pm2 && pm2 restart index.js"
