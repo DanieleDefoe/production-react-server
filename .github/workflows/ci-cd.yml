@@ -52,5 +52,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /root/production-react-server
-            whereis pm2
-            # bash -l -c "pm2 restart index.js"
+            bash -l -c "/root/.local/share/fnm/node-versions/v22.14.0/installation/bin/pm2 restart ~/production-react-server/index.js"
