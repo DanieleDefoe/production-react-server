@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "node ./index.js",
-    "deploy-app": "vercel --prod"
+    "deploy-app": "vercel --prod",
+    "restart": "pm2 restart ecosystem.config.js"
   },
   "keywords": [],
   "author": "",
